@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخیص احساسات از روی صدا</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>تشخیص احساسات از روی صدا</h1>
+        <p>یک فایل صوتی (wav) را انتخاب و آپلود کنید تا احساسات آن را تحلیل کنیم.</p>
+
+        <!-- Emoji Display -->
+        <div class="emoji-container">
+            <svg id="emoji" viewBox="0 0 120 120">
+                <!-- Face -->
+                <circle cx="60" cy="60" r="50" fill="#FFDE33"/>
+                <!-- Eyes -->
+                <circle cx="45" cy="50" r="5" fill="#333"/>
+                <circle cx="75" cy="50" r="5" fill="#333"/>
+                <!-- Mouth -->
+                <path id="mouth" d="M 40 80 Q 60 90 80 80" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- Upload Form -->
+        <form id="upload-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="audio_file" id="audio-file" accept=".wav" required>
+            <label for="audio-file" class="custom-file-upload">انتخاب فایل</label>
+            <button type="submit">تحلیل کن!</button>
+        </form>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Results -->
+        <div id="results-container">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script src="{% static 'main/script.js' %}"></script>
+</body>
+</html>
